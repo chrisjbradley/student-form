@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import StudentForm from './components/StudentForm';
+import ErrorBoundary from './components/ErrorBoundary';
+import Modal from './components/Modal';
+
+class App extends Component {
+
+
+handleClick = () => {
+  console.log('I was clicked!');
+}
+
+  render() {
+
+    return (
+      <div className="App" onClick={this.handleClick}>
+
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        
+        <ErrorBoundary>
+          <StudentForm />
+
+          <Modal>
+            <div className="modal">
+              This is the Modal Window!
+              <button className="modal-button">Close X</button>
+            </div>
+          </Modal>
+        </ErrorBoundary>
+
+      </div>
+    );
+  }
 }
 
 export default App;
